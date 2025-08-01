@@ -9,77 +9,40 @@ This repository contains a comprehensive analysis of police stop data from Tampa
 - **Departments**: Multiple law enforcement agencies including Tampa Police Department, Hillsborough County Sheriff's Office, Florida Highway Patrol, and others
 - **Key Variables**: Subject demographics (race, gender, age), violation types, outcomes, department information, and vehicle registration data
 
+## Analysis Components
+
+### Core Police Stops Analysis
+- **Main Script**: `scripts/police_stops_analysis.py`
+- **Quick Summary**: `scripts/quick_summary.py`
+- **Violation Analysis**: `scripts/violation_analysis.py`
+
+### Additional Analyses
+- **CVAP Analysis**: `scripts/cvap_analysis.py` - Citizen Voting Age Population analysis for Hillsborough County
+- **Latino Car Ownership**: `scripts/latino_car_ownership_simple.py` - Analysis of Latino car ownership patterns
+- **PUMS Data Processing**: `scripts/update_pums_headers.py` and `scripts/update_pums_headers_improved.py` - American Community Survey data processing
+
+### Documentation
+- **CVAP Summary**: `documentation/cvap_summary.md` - Detailed findings from CVAP analysis
+- **Latino Car Ownership**: `documentation/latino_car_ownership_summary.md` - Analysis of Latino car ownership patterns
+- **PUMS Processing**: `documentation/PUMS_HEADER_UPDATE_README.md` - Guide for PUMS data processing
+- **Violation Analysis**: `documentation/violation_summary.md` - Detailed violation analysis findings
+
 ## Visualizations Created
 
-### 1. **Race Distribution** (`1_race_distribution.png`)
-- Pie chart showing the breakdown of police stops by subject race
-- Reveals potential racial disparities in policing patterns
-- Key finding: White subjects account for the majority of stops
+### Core Police Stops Visualizations
+- **Race Distribution** (`1_race_distribution.png`)
+- **Violation Categories** (`15_violation_categories.png`)
+- **Violation Categories Pie** (`16_violation_categories_pie.png`)
+- **Violation Categories by Race** (`17_violation_categories_by_race.png`)
+- **CVAP vs Police Comparison** (`18_cvap_vs_police_comparison.png`)
+- **Disparity Analysis** (`19_disparity_analysis.png`)
+- **Detailed Comparison** (`20_detailed_comparison.png`)
 
-### 2. **Gender Distribution** (`2_gender_distribution.png`)
-- Bar chart comparing stops by subject gender
-- Shows significant gender gap in police stops
-- Key finding: Males are stopped more frequently than females
+### Additional Analyses
+- **Latino Car Ownership Basic** (`latino_car_ownership_basic.png`)
+- **Latino Car Ownership by Income** (`latino_car_ownership_income.png`)
 
-### 3. **Age Distribution** (`3_age_distribution.png`)
-- Histogram showing the age distribution of subjects
-- Helps identify which age groups are most frequently stopped
-- Note: Many records have missing age data
-
-### 4. **Temporal Analysis** (`4_stops_over_time.png`)
-- Line chart showing police stops over time (1973-2018)
-- Reveals trends and patterns in policing activity
-- Shows how stop frequency has changed over decades
-
-### 5. **Department Activity** (`5_department_activity.png`)
-- Horizontal bar chart showing stops by law enforcement agency
-- Tampa Police Department leads with ~1.3M stops
-- Shows the relative activity levels of different departments
-
-### 6. **Department vs Race Heatmap** (`6_dept_race_heatmap.png`)
-- Heatmap showing the relationship between departments and subject race
-- Reveals department-specific patterns in racial demographics
-- Helps identify potential disparities across different agencies
-
-### 7. **Top Violations** (`7_top_violations.png`)
-- Horizontal bar chart of most common violation codes
-- Shows what types of violations lead to the most stops
-- Traffic violations dominate the dataset
-
-### 8. **Violation Types by Race** (`8_violation_by_race.png`)
-- Stacked bar chart showing violation types across racial groups
-- Reveals if different racial groups are stopped for different reasons
-- Important for understanding potential bias in policing
-
-### 9. **Vehicle Registration Analysis** (`9_vehicle_registration.png`)
-- Bar chart showing vehicle registration states
-- Florida vehicles dominate, but shows out-of-state traffic
-- Useful for understanding the geographic scope of stops
-
-### 10. **Outcome Analysis** (`10_outcome_analysis.png`)
-- Pie chart showing the breakdown of stop outcomes
-- Citations, warnings, arrests, etc.
-- Shows how stops are typically resolved
-
-### 11. **Outcomes by Race** (`11_outcome_by_race.png`)
-- Stacked bar chart comparing outcomes across racial groups
-- Critical for identifying potential disparities in treatment
-- Shows if different groups receive different outcomes for similar violations
-
-### 12. **Seasonal Patterns** (`12_seasonal_patterns.png`)
-- Heatmap showing stops by month and day of week
-- Reveals temporal patterns in policing activity
-- Helps identify peak times for police stops
-
-### 13. **Interactive Dashboard** (`13_summary_dashboard.html`)
-- Interactive HTML dashboard with key statistics
-- Summary table with dataset overview
-- Can be opened in any web browser
-
-### 14. **Disparity Analysis** (`14_disparity_analysis.png`)
-- Comparative analysis of stop rates vs. population demographics
-- Uses estimated population data to calculate per-capita stop rates
-- Critical for identifying over-policing of specific groups
+*Note: Additional visualizations from the original analysis (2-14) are available in the visualizations directory*
 
 ## Key Insights
 
@@ -108,6 +71,16 @@ This repository contains a comprehensive analysis of police stop data from Tampa
 - Citation vs. warning patterns show potential disparities in treatment
 - Critical for understanding fairness in policing
 
+### CVAP Analysis
+- Citizen Voting Age Population analysis for Hillsborough County, Florida
+- Comparison of police stop demographics with voting-age population
+- Important for understanding representation and potential bias
+
+### Latino Car Ownership
+- Analysis of Latino car ownership patterns in the Tampa area
+- Income-based analysis of vehicle ownership
+- Important for understanding mobility and economic factors
+
 ## Technical Details
 
 ### Data Processing
@@ -115,6 +88,7 @@ This repository contains a comprehensive analysis of police stop data from Tampa
 - Handled missing values appropriately
 - Converted dates and ages to proper formats
 - Extracted violation categories from detailed violation codes
+- Processed American Community Survey (PUMS) data for demographic comparisons
 
 ### Visualization Tools
 - **Matplotlib**: Static charts and graphs
@@ -124,26 +98,37 @@ This repository contains a comprehensive analysis of police stop data from Tampa
 
 ### File Structure
 ```
-police-stops-data/
-├── fl_tampa_2020_04_01.csv    # Raw data file
-├── police_stops_analysis.py    # Analysis script
-├── requirements.txt            # Python dependencies
-├── README.md                  # This file
-└── visualizations/            # Generated visualizations
-    ├── 1_race_distribution.png
-    ├── 2_gender_distribution.png
-    ├── 3_age_distribution.png
-    ├── 4_stops_over_time.png
-    ├── 5_department_activity.png
-    ├── 6_dept_race_heatmap.png
-    ├── 7_top_violations.png
-    ├── 8_violation_by_race.png
-    ├── 9_vehicle_registration.png
-    ├── 10_outcome_analysis.png
-    ├── 11_outcome_by_race.png
-    ├── 12_seasonal_patterns.png
-    ├── 13_summary_dashboard.html
-    └── 14_disparity_analysis.png
+police-stops-data-clean/
+├── csvs/                           # Data files
+│   ├── police-stop-data/           # Police stops dataset
+│   └── PUMS-2018-data/            # American Community Survey data
+│       ├── csv_hfl/               # Household-level data
+│       └── csv_pfl/               # Person-level data
+├── scripts/                        # Analysis scripts
+│   ├── police_stops_analysis.py    # Main police stops analysis
+│   ├── quick_summary.py           # Quick dataset summary
+│   ├── violation_analysis.py      # Detailed violation analysis
+│   ├── cvap_analysis.py           # CVAP demographic analysis
+│   ├── latino_car_ownership_simple.py  # Latino car ownership analysis
+│   ├── update_pums_headers.py     # PUMS data processing
+│   └── update_pums_headers_improved.py  # Improved PUMS processing
+├── documentation/                  # Analysis documentation
+│   ├── cvap_summary.md            # CVAP analysis findings
+│   ├── latino_car_ownership_summary.md  # Latino car ownership findings
+│   ├── PUMS_HEADER_UPDATE_README.md     # PUMS processing guide
+│   └── violation_summary.md       # Violation analysis findings
+├── visualizations/                 # Generated charts and graphs
+│   ├── 1_race_distribution.png
+│   ├── 15_violation_categories.png
+│   ├── 16_violation_categories_pie.png
+│   ├── 17_violation_categories_by_race.png
+│   ├── 18_cvap_vs_police_comparison.png
+│   ├── 19_disparity_analysis.png
+│   ├── 20_detailed_comparison.png
+│   ├── latino_car_ownership_basic.png
+│   └── latino_car_ownership_income.png
+├── requirements.txt                # Python dependencies
+└── README.md                      # This file
 ```
 
 ## Running the Analysis
@@ -153,14 +138,28 @@ police-stops-data/
    pip install -r requirements.txt
    ```
 
-2. Run the analysis:
+2. Run specific analyses:
    ```bash
+   # Main police stops analysis
    python3 police_stops_analysis.py
+   
+   # Quick summary
+   python3 quick_summary.py
+   
+   # Violation analysis
+   python3 violation_analysis.py
+   
+   # CVAP analysis
+   python3 cvap_analysis.py
+   
+   # Latino car ownership analysis
+   python3 latino_car_ownership_simple.py
    ```
 
 3. View results:
    - PNG files can be opened in any image viewer
-   - HTML dashboard can be opened in a web browser
+   - HTML dashboards can be opened in a web browser
+   - Documentation files provide detailed analysis summaries
 
 ## Data Privacy and Ethics
 
@@ -172,6 +171,7 @@ This analysis is conducted for research and transparency purposes. The data has 
 - Missing data in some fields (particularly age) may affect analysis
 - The dataset may not capture all police interactions
 - Historical data may not reflect current policing practices
+- CVAP analysis relies on American Community Survey estimates
 
 ## Future Work
 
@@ -181,6 +181,8 @@ Potential areas for further analysis:
 - Comparison with other cities
 - Machine learning models for predicting stop outcomes
 - Real-time dashboard for ongoing monitoring
+- Integration of additional demographic datasets
+- Longitudinal analysis of policing trends
 
 ---
 
